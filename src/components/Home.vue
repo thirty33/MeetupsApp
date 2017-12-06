@@ -2,17 +2,21 @@
 	<v-container>
 		<v-layout row wrap class="first mb-2">
 			<v-flex xs12 sm6 class="text-xs-center text-sm-right">
-				<v-btn large router to="meetups" class="mt-0 primary">Explore Meetups</v-btn>
+				<v-btn large to="meetups" class="mt-0 primary">Explore Meetups</v-btn>
 			</v-flex>
 			<v-flex xs12 sm6 class="text-xs-center text-sm-left">
-				<v-btn large router to="meetup/new" class="mt-0 primary">Organize Meetup</v-btn>
+				<v-btn large to="meetup/new" class="mt-0 primary">Organize Meetup</v-btn>
 			</v-flex>
 		</v-layout>
 
 		<v-layout row wrap class="mt-2" >
 			<v-flex xs12>
 				<v-carousel>
-					<v-carousel-item v-for="meetup in meetups" :src="meetup.imageUrl" :key="meetup.id">
+					<v-carousel-item 
+					v-for="meetup in meetups" 
+					:src="meetup.imageUrl" 
+					:key="meetup.id"
+					@click="onLoadMeetup(meetup.id)">
 						<div class="title">
 							{{ meetup.title }}
 						</div>
@@ -42,6 +46,11 @@
 					{ imageUrl: 'http://www.greycloaktech.com/wp-content/uploads/2015/07/url-small.jpg', id: '8282727', title: 'meetup en cali'},
 					
 				]
+			}
+		},
+		methods: {
+			onLoadMeetup(key) {
+				this.$router.push('/meetups/' + key)
 			}
 		}
 	}

@@ -2,7 +2,10 @@
   <v-app light>
     <v-toolbar dark class="purple darken-1">
       <v-toolbar-side-icon @click.native.stop="sideNav = !sideNav" class="hidden-sm-and-up"></v-toolbar-side-icon>
-      <v-toolbar-title>DevMeetup</v-toolbar-title>
+      <a to="/" class="hidden-sm-and-down">
+        <v-toolbar-title class="mainTitle">DevMeetup</v-toolbar-title>
+      </a>  
+      
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
         <v-btn flat v-for="item in menuItems" :key="item.title" router :to="item.link">
@@ -52,6 +55,10 @@
 </script>
 
 <style>
+
+  .mainTitle {
+    color: white !important;
+  }
 
 
 </style>
