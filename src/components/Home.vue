@@ -39,18 +39,17 @@
 	export default {
 		data(){
 			return {
-				meetups: [
-					{ imageUrl: 'http://www.greycloaktech.com/wp-content/uploads/2015/07/url-small.jpg', id: '8282727', title: 'meetup en cali'},
-					{ imageUrl: 'http://www.greycloaktech.com/wp-content/uploads/2015/07/url-small.jpg', id: '8282727', title: 'meetup en cali'},
-					{ imageUrl: 'http://www.greycloaktech.com/wp-content/uploads/2015/07/url-small.jpg', id: '8282727', title: 'meetup en cali'},
-					{ imageUrl: 'http://www.greycloaktech.com/wp-content/uploads/2015/07/url-small.jpg', id: '8282727', title: 'meetup en cali'},
-					
-				]
+				
 			}
 		},
 		methods: {
 			onLoadMeetup(key) {
 				this.$router.push('/meetups/' + key)
+			}
+		},
+		computed: {
+			meetups () {
+				return this.$store.getters.featuredMeetups
 			}
 		}
 	}
