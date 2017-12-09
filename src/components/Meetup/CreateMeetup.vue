@@ -99,7 +99,7 @@
 								type="submit">Create Meetup</v-btn>
 						</v-flex>
 					</v-layout>
-					<p>{{ submittableDateTime }}</p>
+					
 				</form>
 			</v-flex>
 		</v-layout>	
