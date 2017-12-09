@@ -6,10 +6,18 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         loadedMeetups: [
-            { imageUrl: 'http://www.greycloaktech.com/wp-content/uploads/2015/07/url-small.jpg', id: '8282727', title: 'meetup en New York', date: '2017-12-07'},
-            { imageUrl: 'https://www.101viajes.com/sites/default/files/sky-tree-tokyo.jpg', id: '8282728', title: 'meetup en cali', date: '2017-12-15'},
-            { imageUrl: 'https://d16teuje7e44sv.cloudfront.net/spa/cities/spain/madrid-medium.jpg', id: '8282729', title: 'meetup en madrid', date: '2017-12-07'},
-            { imageUrl: 'https://vignette.wikia.nocookie.net/stalker/images/5/58/Chernobyl-3.jpg/revision/latest?cb=20170204115502&path-prefix=es', id: '8282730', title: 'meetup en chernobyl', date: '2017-12-09'},
+            { imageUrl: 'http://www.greycloaktech.com/wp-content/uploads/2015/07/url-small.jpg',
+             id: '8282727',
+             title: 'meetup en New York', date: '2017-12-07',location:'new york', description: 'yeyeyeye'},
+            { imageUrl: 'https://www.101viajes.com/sites/default/files/sky-tree-tokyo.jpg',
+             id: '8282728',
+             title: 'meetup en cali', date: '2017-12-15',location:'cali', description: 'yeyeyeye'},
+            { imageUrl: 'https://d16teuje7e44sv.cloudfront.net/spa/cities/spain/madrid-medium.jpg',
+             id: '8282729',
+             title: 'meetup en madrid', date: '2017-12-07',location:'madrid', description: 'yeyeyeye'},
+            { imageUrl: 'https://vignette.wikia.nocookie.net/stalker/images/5/58/Chernobyl-3.jpg/revision/latest?cb=20170204115502&path-prefix=es',
+             id: '8282730',
+             title: 'meetup en chernobyl', date: '2017-12-09',location:'chernobyl', description: 'yeyeyeye'},
         ],
         user: {
             id: 'jajaja',
