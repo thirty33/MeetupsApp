@@ -9,6 +9,7 @@ import App from './App'
 import router from './router'
 import { store } from './store/store.js'
 import DateFilter from './filters/date'
+import * as firebase from 'firebase' 
 Vue.use(Vuetify)
 
 Vue.config.productionTip = false
@@ -20,5 +21,15 @@ new Vue({
   router,
   store,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  created () {
+    firebase.initializeApp({
+      apiKey: "AIzaSyDId785y_2c1hda5E8Kksv2og0PCDtf3kI",
+      authDomain: "yt-meetup-project.firebaseapp.com",
+      databaseURL: "https://yt-meetup-project.firebaseio.com",
+      projectId: "yt-meetup-project",
+      storageBucket: "yt-meetup-project.appspot.com",
+      messagingSenderId: "455242454525"
+    })
+  }
 })

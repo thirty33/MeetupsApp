@@ -2,7 +2,7 @@
   <v-app light>
     <v-toolbar dark class="purple darken-1">
       <v-toolbar-side-icon @click.native.stop="sideNav = !sideNav" class="hidden-sm-and-up"></v-toolbar-side-icon>
-      <a to="/" class="hidden-sm-and-down">
+      <a router to="/" class="hidden-sm-and-down">
         <v-toolbar-title class="mainTitle">DevMeetup</v-toolbar-title>
       </a>  
       
@@ -41,14 +41,26 @@
     data () {
       return {
         sideNav: false,
-        menuItems: [
-          {icon: 'supervisor_account', title: 'View Meetups', link: '/meetups'},
-          {icon: 'room', title: 'Organize Meetups', link: '/meetup/new'},
-          {icon: 'person', title: 'Profile', link: '/profile'},
+        
+      }
+    },
+    computed: {
+      menuItems () {
+        let menuItems = [
           {icon: 'face', title: 'Sign Up', link: '/signup'},
           {icon: 'lock_open', title: 'Sign in', link: '/signin'},
-
         ]
+        if (this.userIsAuthenticated) {
+          menuItems = [
+            {icon: 'supervisor_account', title: 'View Meetups', link: '/meetups'},
+            {icon: 'room', title: 'Organize Meetups', link: '/meetup/new'},
+            {icon: 'person', title: 'Profile', link: '/profile'},
+          ]
+        }
+        return menuItems
+      },
+      userIsAuthenticated () {
+        return this.$store.getters.user !== null && this.$store.getters.user !== undefined
       }
     }
   }
