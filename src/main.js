@@ -33,6 +33,12 @@ new Vue({
       storageBucket: "yt-meetup-project.appspot.com",
       messagingSenderId: "455242454525"
     })
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log('este usuario',user)
+        this.$store.dispatch('autoSignIn', user)
+      }
+    })
     this.$store.dispatch('loadMeetups')
   }
 })
