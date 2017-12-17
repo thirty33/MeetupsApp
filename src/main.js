@@ -9,14 +9,18 @@ import App from './App'
 import router from './router'
 import { store } from './store/store.js'
 import DateFilter from './filters/date'
-import * as firebase from 'firebase' 
+import * as firebase from 'firebase'
 import AlertCmp from './components/Shared/Alerts.vue'
+import EditMeetup from './components/Meetup/edit/EditMeetup.vue'
+
 Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 
 Vue.filter('date', DateFilter)
 Vue.component('app-alert', AlertCmp)
+Vue.component('modal-modif', EditMeetup)  
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -39,6 +43,6 @@ new Vue({
         this.$store.dispatch('autoSignIn', user)
       }
     })
-    this.$store.dispatch('loadMeetups') 
   }
 })
+

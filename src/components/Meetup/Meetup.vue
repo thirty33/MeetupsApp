@@ -1,27 +1,49 @@
 <template>
     <v-container>
-        <v-layout row wrap>
+        <v-layout row wrap v-if="loading">
+			<v-flex xs12 class="text-xs-center">
+				<v-progress-circular
+				 indeterminate
+				 color="blue-grey"
+				 class="primary--text"
+				 :width="7"
+				 :size="70"
+				 v-if="loading">
+
+
+				</v-progress-circular>
+
+			</v-flex>
+		</v-layout>
+        <v-layout row wrap v-else>
             <v-flex xs12>
                 <v-card>
                     <v-card-title>
                         <h4 class="primary--text">{{ meetup.title }}</h4>
+                        <template v-if="userIsCreator">
+                          <v-spacer></v-spacer>
+                            <modal-modif :meetup="meetup"></modal-modif>
+                            
+                          
+                        
+                        </template>
                     </v-card-title>
                     <v-card-media
                     :src="meetup.imageUrl"
                     height="400px">
 
-                    
+
                     </v-card-media>
                     <v-card-text>
                         <div>{{ meetup.date | date }} - {{ meetup.location }}</div>
-                        <div>{{ meetup.description }}</div>    
+                        <div>{{ meetup.description }}</div>
                     </v-card-text>
                     <v-card-actions>
-                        <v-spacer></v-spacer>   
+                        <v-spacer></v-spacer>
                         <v-btn class="primary">register</v-btn>
-                    </v-card-actions>          
+                    </v-card-actions>
 
-                    
+
                 </v-card>
             </v-flex>
 
@@ -41,7 +63,21 @@
         computed: {
             meetup () {
                 return this.$store.getters.loadedMeetup(this.id)
-            }
+            },
+            userIsAuthenticated () {
+                return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+            },
+            userIsCreator () {
+                if(!this.userIsAuthenticated) {
+                    return false
+                }
+
+                return this.$store.getters.user.id === this.meetup.creatorId
+            },
+            loading () {
+				return this.$store.getters.loading
+			}
+
         }
     }
 </script>

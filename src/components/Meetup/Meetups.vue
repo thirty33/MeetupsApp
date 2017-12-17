@@ -31,6 +31,7 @@
 							</v-flex> 
 
 						</v-layout>
+						
 					</v-container>	
 				</v-card>
 			</v-flex>
@@ -50,6 +51,7 @@
 		computed: {
 			meetups () {
 				return this.$store.getters.loadedMeetups
+				
 			}
 		}
 	}
