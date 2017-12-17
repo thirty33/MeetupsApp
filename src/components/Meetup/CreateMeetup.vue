@@ -38,13 +38,21 @@
 					</v-layout>
 					<v-layout row>
 						<v-flex xs12 sm6 offset-sm3>
-							<v-text-field
+							<!-- <v-text-field
 							name="imageUrl"
 							label="Image Url"
 							id="image-url"
 							v-model="imageUrl"
 							required
-							></v-text-field>
+							></v-text-field> -->
+
+							<!-- Upload files in db firebase -->
+							<v-btn raise class="primary" @click="onPickFile">Upload image</v-btn>	
+							<input type="file"
+							 style="display:none;"
+							 ref="fileInput"
+							 accept="image/*"
+							 @change="loadPick">
 							
 						</v-flex>	
 			
@@ -118,6 +126,7 @@
 				description: '',
 				date: '',
 				time: new Date(),
+				image: null,
 				
 			}
 		},
@@ -149,16 +158,40 @@
 				if (!this.formIsValid) {
 					return
 				}
+				if (!this.image) {
+					return
+				}
 				const meetupData = {
 					title: this.title,
 					location: this.location,
-					imageUrl: this.imageUrl,
+					image: this.image,
 					description: this.description,
 					date: this.submittableDateTime,
+					
 					
 				}
 				this.$store.dispatch('createMeetup', meetupData)
 				this.$router.push('/meetups')
+			},
+			onPickFile () {
+				console.log('this is the object $refs', this.$refs)
+				this.$refs.fileInput.click()
+			},
+			loadPick (event) {
+				const files = event.target.files
+				// console.log('evento', files )
+				let filename = files[0].name
+				if (filename.lastIndexOf('.') <= 0) {
+					return alert('Please add a valid file')
+				}
+				const fileReader = new FileReader()
+				fileReader.addEventListener('load', () =>{
+					// console.log('this is a filereader', fileReader)
+					this.imageUrl = fileReader.result
+				})
+				// console.log('this is file[0]', files[0])
+				fileReader.readAsDataURL(files[0])
+				this.image = files[0]
 			}
 		}
 	}

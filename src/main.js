@@ -30,7 +30,7 @@ new Vue({
       authDomain: "yt-meetup-project.firebaseapp.com",
       databaseURL: "https://yt-meetup-project.firebaseio.com",
       projectId: "yt-meetup-project",
-      storageBucket: "yt-meetup-project.appspot.com",
+      storageBucket: "gs://yt-meetup-project.appspot.com",
       messagingSenderId: "455242454525"
     })
     firebase.auth().onAuthStateChanged((user) => {
@@ -39,6 +39,6 @@ new Vue({
         this.$store.dispatch('autoSignIn', user)
       }
     })
-    this.$store.dispatch('loadMeetups')
+    this.$store.dispatch('loadMeetups') 
   }
 })
