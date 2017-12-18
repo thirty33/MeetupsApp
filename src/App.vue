@@ -84,11 +84,7 @@
 
 </script>
 
-<style>
 
-  .mainTitle {
-    color: white !important;
-  }
-
-
+<style lang="stylus">
+  @import './stylus/main'
 </style>
