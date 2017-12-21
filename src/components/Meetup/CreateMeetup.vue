@@ -4,12 +4,12 @@
 			<v-flex xs12 sm6 offset-sm3>
 				<h4 class="primary--text">Create a new Meetup</h4>
 			</v-flex>
-		</v-layout>	
+		</v-layout>
 		<v-layout row>
 			<v-flex xs12>
 				<form @submit.prevent="onCreateMeetup">
 
-					
+
 					<v-layout row>
 						<v-flex xs12 sm6 offset-sm3>
 							<v-text-field
@@ -19,9 +19,9 @@
 								v-model="title"
 								required
 							></v-text-field>
-							
-						</v-flex>	
-			
+
+						</v-flex>
+
 					</v-layout>
 					<v-layout row>
 						<v-flex xs12 sm6 offset-sm3>
@@ -32,9 +32,9 @@
 								v-model="location"
 								required
 							></v-text-field>
-							
-						</v-flex>	
-			
+
+						</v-flex>
+
 					</v-layout>
 					<v-layout row>
 						<v-flex xs12 sm6 offset-sm3>
@@ -47,15 +47,15 @@
 							></v-text-field> -->
 
 							<!-- Upload files in db firebase -->
-							<v-btn raise class="primary" @click="onPickFile">Upload image</v-btn>	
+							<v-btn raise class="primary" @click="onPickFile">Upload image</v-btn>
 							<input type="file"
 							 style="display:none;"
 							 ref="fileInput"
 							 accept="image/*"
 							 @change="loadPick">
-							
-						</v-flex>	
-			
+
+						</v-flex>
+
 					</v-layout>
 					<v-layout row>
 						<v-flex xs12 sm6 offset-sm3>
@@ -72,22 +72,22 @@
 								multi-line
 								required
 							></v-text-field>
-							
-						</v-flex>	
-			
+
+						</v-flex>
+
 					</v-layout>
 					<v-layout row>
 						<v-flex xs12 sm6 offset-sm3>
 							<h4>Choose a data & Time</h4>
-						
-						</v-flex>	
+
+						</v-flex>
 
 					</v-layout>
 					<v-layout row class="mb-3">
 						<v-flex xs12 sm6 offset-sm3>
 							<v-date-picker v-model="date"></v-date-picker>
 							<!-- <p>{{ date }}</p> -->
-						</v-flex>	
+						</v-flex>
 
 					</v-layout>
 					<v-layout row>
@@ -96,21 +96,21 @@
 
 							</v-time-picker>
 							<!-- <p>{{ time }}</p> -->
-						</v-flex>	
+						</v-flex>
 
 					</v-layout>
 					<v-layout row>
 						<v-flex xs12 sm6 offset-sm3>
-							<v-btn 
-								class="primary" 
+							<v-btn
+								class="primary"
 								:disabled="!formIsValid"
 								type="submit">Create Meetup</v-btn>
 						</v-flex>
 					</v-layout>
-					
+
 				</form>
 			</v-flex>
-		</v-layout>	
+		</v-layout>
 	</v-container>
 
 </template>
@@ -127,14 +127,14 @@
 				date: '',
 				time: new Date(),
 				image: null,
-				
+
 			}
 		},
 		computed: {
 			formIsValid () {
-				return this.title !== '' && 
-				this.location !== '' && 
-				this.imageUrl !== '' && 
+				return this.title !== '' &&
+				this.location !== '' &&
+				this.imageUrl !== '' &&
 				this.description !== ''
 			},
 			submittableDateTime () {
@@ -147,9 +147,9 @@
 				} else {
 					date.setHours(this.time.getHours())
 					date.setMinutes(this.time.getMinutes())
-					
+
 				}
-			
+
 				return date
 			}
 		},
@@ -167,8 +167,8 @@
 					image: this.image,
 					description: this.description,
 					date: this.submittableDateTime,
-					
-					
+
+
 				}
 				this.$store.dispatch('createMeetup', meetupData)
 				this.$router.push('/meetups')
