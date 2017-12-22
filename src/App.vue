@@ -6,11 +6,11 @@
         <router-link to="/" tag="span" style="cursor: pointer">DevMeetup</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      
+
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
         <v-btn flat v-for="item in menuItems" :key="item.title" router :to="item.link">
-          <v-icon left>{{ item.icon }}</v-icon> 
+          <v-icon left>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
         <v-btn flat v-if="userIsAuthenticated" @click="onLogout">
@@ -19,7 +19,7 @@
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
-    
+
 
     <!-- hamburg menu -->
     <v-navigation-drawer temporary v-model="sideNav" absolute>
@@ -38,13 +38,13 @@
           </v-list-tile-action>
           <v-list-tile-content>
             Sign Out
-          </v-list-tile-content> 
+          </v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
 
     <main>
-      <router-view></router-view> 
+      <router-view></router-view>
     </main>
   </v-app>
 </template>
@@ -54,7 +54,7 @@
     data () {
       return {
         sideNav: false,
-        
+
       }
     },
     computed: {
@@ -79,6 +79,7 @@
     methods: {
       onLogout () {
         this.$store.dispatch('onLogout')
+        this.$router.push('/')
       }
     }
   }
